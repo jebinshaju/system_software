@@ -1,0 +1,94 @@
+DATA SEGMENT 
+MSG1 DB 0AH,0DH,"ENTER THE STRING: $"
+MSG2 DB 0AH,0DH,"ENTER THE CHAR TO SEARCH: $"
+MSG3 DB 0AH,0DH,"CHAR FOUND $"
+MSG4 DB 0AH,0DH,"CHAR NOT FOUND $"
+CHR1 DB 10D DUP(?)
+CHR2 DB 10D DUP(?)
+DATA ENDS
+
+CODE SEGMENT
+ASSUME CS:CODE,DS:DATA
+
+START: 	MOV AX,DATA
+	 	  	MOV DS,AX
+	
+			MOV AH,09H
+			LEA DX,MSG1
+			INT 21H
+			
+			LEA SI,CHR1
+			MOV CL,00H
+	
+L2:		MOV AH,01H
+	 		INT 21H
+			 
+			 CMP AL,0DH
+			 JZ L1
+			 MOV[SI],AL
+			 INC SI
+			 INC CL
+			 JMP L2
+			 
+L1:		 MOV AH,09H
+			 LEA DX,MSG2
+			 INT 21H
+			 LEA SI,CHR1
+			 MOV AH,01H
+	 		INT 21H
+			 
+L3: 		CMP AL,[SI]
+			JZ L4
+			INC SI
+			DEC CL
+			JNZ L3
+			MOV AH,09H
+			 LEA DX,MSG4
+			 INT 21H
+			 MOV AH,4CH
+			 INT 21H
+			
+
+L4:		MOV AH,09H
+			 LEA DX,MSG3
+			 INT 21H		
+			 MOV AH,4CH
+	 		INT 21H
+
+
+CODE ENDS
+END START
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			
