@@ -1,0 +1,108 @@
+DATA SEGMENT
+MSG1 DB 0AH,0DH,"Enter the  number: $"
+
+MSG2 DB 0AH,0DH,"Enter the NUMBER TO SEARCHED:$"
+MSG3 DB 0AH,0DH,"THE NUMBER IS FOUND.$"
+MSG4 DB 0AH,0DH,"THE NUMBER IS NOT FOUND!$"
+
+A DW 05H DUP(?)
+B DW 00H
+C1 DB 05H
+C2 DB 05H
+DATA ENDS
+
+CODE SEGMENT
+ASSUME CS:CODE,DS:DATA
+START: MOV AX,DATA
+       MOV DS,AX
+		LEA SI,A
+		L10:INC SI
+
+			MOV AH,09H
+			LEA DX,MSG1
+			INT 21H
+			
+			CALL P1
+			
+			MOV [SI],AL
+			DEC SI
+			
+			CALL P1
+			
+			
+			MOV [SI],AL
+			INC SI
+			INC SI
+			DEC C1
+			JNZ L10
+
+		LEA SI,B
+
+		MOV AH,09H
+		LEA DX,MSG2
+		INT 21H
+
+		INC SI
+		CALL P1
+		MOV [SI],AL
+
+		DEC SI
+		CALL P1
+		MOV [SI],AL
+
+		LEA SI,A
+		MOV BX,B
+
+		L20:MOV AX,[SI]
+			CMP AX,BX
+			JZ L30
+			INC SI
+			INC SI
+			DEC C2
+			JNZ L20
+			JMP L50
+
+
+
+		L30:MOV AH,09H
+			LEA DX,MSG3
+			INT 21H
+			MOV AH,4CH
+			INT 21H
+
+		L50:MOV AH,09H
+			LEA DX,MSG4
+			INT 21H
+			MOV AH,4CH
+			INT 21H
+
+
+
+		P1 PROC
+		   MOV AH,01H
+		   INT 21H
+		   SUB AL,30H
+		   CMP AL,09H
+		   JLE L1
+		   SUB AL,07H
+		   
+		L1:MOV CL,04H
+		   ROL AL,CL
+		   MOV CH,AL
+		   
+		   MOV AH,01H
+		   INT 21H  
+		   SUB AL,30H
+		   CMP AL,09H
+		   JLE L2
+		   SUB AL,07H
+
+		L2:ADD AL,CH
+		   RET
+		  P1 ENDP
+		   
+ 
+   
+CODE ENDS 
+END START
+   
