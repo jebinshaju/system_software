@@ -1,0 +1,129 @@
+NAME:TEENA VITHAYATHIL												
+CLASS:CSE B												
+SEMESTER:S5												
+ROLL NUMBER:58
+
+	SORTING A LIST OF 16 BIT NUMBERS
+*******************************************************************
+
+DATA SEGMENT
+MSG1 DB 0AH,0DH,"Enter a number: $"
+MSG2 DB 0AH,0DH,"Sorted array: $"
+MSG3 DB 0AH,0DH," $"
+A DW 05H DUP(?)
+DATA ENDS
+
+CODE SEGMENT
+ASSUME CS:CODE,DS:DATA
+START: MOV AX,DATA
+       MOV DS,AX
+       
+       MOV BL,05H
+       LEA SI,A
+    L1:MOV AH,09H
+       LEA DX,MSG1
+       INT 21H
+       INC SI
+       CALL P1
+       MOV [SI],AL
+       DEC SI
+       CALL P1
+       MOV [SI],AL
+       INC SI
+       INC SI
+       DEC BL
+       JNZ L1
+       
+       MOV CH,05H 
+       DEC CH
+    L4:MOV CL,04H
+       LEA SI,A
+    L2:MOV AX,[SI]
+       MOV BX,[SI+2]
+       CMP AX,BX
+       JC L3
+       XCHG AX,BX
+       MOV [SI],AX
+       MOV [SI+2],BX
+      
+    L3:INC SI
+       INC SI	
+       DEC CL
+       JNZ L2 
+       DEC CH
+       JNZ L4
+       JMP L10	
+     
+    L10:MOV AH,09H
+       LEA DX,MSG2
+       INT 21H
+       LEA SI,A
+       MOV BL,05H
+    
+     L5:INC SI
+       CALL P2  
+       DEC SI
+       CALL P2
+       INC SI
+       INC SI
+       MOV AH,09H
+       LEA DX,MSG3
+       INT 21H
+       DEC BL
+       JNZ L5
+       
+       MOV AH,4CH
+       INT 21H
+       
+       P1 PROC
+       MOV AH,01H
+       INT 21H
+       SUB AL,30H
+       CMP AL,09H
+       JLE L6
+       SUB AL,07H
+   
+   L6: MOV CL,04H
+       ROL AL,CL
+       MOV CH,AL
+       MOV AH,01H
+       INT 21H
+       SUB AL,30H
+       CMP AL,09H
+       JLE L7
+       SUB AL,07H
+     
+   L7: ADD AL,CH
+       RET 
+       P1 ENDP   
+       
+       P2 PROC  
+       MOV AL,[SI]
+       AND AL,0F0H
+       MOV CL,04H
+       ROL AL,CL
+       ADD AL,30H
+       CMP AL,39H
+       JLE L8
+       ADD AL,07H
+       
+   L8: MOV AH,02H
+       MOV DL,AL
+       INT 21H
+       MOV AL,[SI]
+       AND AL,0FH
+       ADD AL,30H
+       CMP AL,39H
+       JLE L9
+       ADD AL,07H
+       
+   L9: MOV AH,02H
+       MOV DL,AL
+       INT 21H
+       RET
+       P2 ENDP    
+       
+CODE ENDS
+END START 
+       
+   

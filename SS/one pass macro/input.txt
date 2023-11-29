@@ -1,0 +1,8 @@
+PGM		START	0
+ABC		MACRO	-
+-		STA		A
+-		STB		B
+-		MEND	-
+-		ABC		-
+-		ABC		-
+-		END		-
