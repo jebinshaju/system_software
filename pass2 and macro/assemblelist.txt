@@ -1,0 +1,11 @@
+	copy	start	2000
+2000	first	lda	five		002015	
+2003	-	sta	alpha		0c200c	
+2006	-	ldch	charz		502018	
+2009	-	stch	c1		54201e	
+200c	alpha	resw	3	
+2015	five	word	5		000005
+2018	charz	byte	c'Zdsd'	5a647364
+201c	charx	byte	x'1234'	1234
+201e	c1	resb	2	
+-	-	end	copy

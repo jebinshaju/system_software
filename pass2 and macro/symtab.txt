@@ -1,0 +1,6 @@
+first	2000
+alpha	200c
+five	2015
+charz	2018
+charx	201c
+c1	201e
