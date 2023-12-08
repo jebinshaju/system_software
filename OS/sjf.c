@@ -1,12 +1,3 @@
-NAME:TEENA VITHAYATHIL												
-CLASS:CSE B												
-SEMESTER:S5												
-ROLL NUMBER:58	
-DATE: 22/08/23
-
-		 SHORTEST JOB FIRST SCHEDULING
-*******************************************************************
->>PROGRAM 
 
 #include <stdio.h>
 

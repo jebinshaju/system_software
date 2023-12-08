@@ -1,10 +1,4 @@
-NAME:TEENA VITHAYATHIL												
-CLASS:CSE B												
-SEMESTER:S5												
-ROLL NUMBER:58
 
-	SINGLE PASS MACRO PROCESSOR
-*******************************************************************
 
 #include<stdio.h>
 #include<string.h>

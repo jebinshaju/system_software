@@ -1,12 +1,4 @@
-NAME:TEENA VITHAYATHIL												
-CLASS:CSE B												
-SEMESTER:S5												
-ROLL NUMBER:58	
-DATE: 22/08/23
 
-		    FIRST FIT
-*******************************************************************
->>PROGRAM 
 
 #include <stdio.h>
 

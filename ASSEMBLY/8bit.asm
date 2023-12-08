@@ -1,10 +1,3 @@
-NAME:TEENA VITHAYATHIL												
-CLASS:CSE B												
-SEMESTER:S5												
-ROLL NUMBER:58
-
-	ADDITION OF TWO 8 BIT NUMBERS
-*******************************************************************
 
 DATA SEGMENT
 MSG1 DB 0AH,0DH,"Enter first number: $"
