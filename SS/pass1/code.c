@@ -1,10 +1,3 @@
-NAME:TEENA VITHAYATHIL												
-CLASS:CSE B												
-SEMESTER:S5												
-ROLL NUMBER:58
-
-	PASS ONE OF 
-*******************************************************************
 
 #include <stdio.h>
 #include <string.h>
